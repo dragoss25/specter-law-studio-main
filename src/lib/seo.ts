@@ -22,12 +22,15 @@ export interface SeoMeta {
 export const SEO_BASE_URL = "https://specterlaw.us";
 export const SEO_OG_IMAGE = `${SEO_BASE_URL}/logos/americanspecterlogo.png`;
 export const SEO_TWITTER_SITE = "@specterlaw";
+export const SEO_ORG_NAME = "Specter Law";
+export const SEO_ORG_ALTERNATE_NAMES = ["Specter", "Speceter"];
+export const SEO_ORG_SAME_AS = ["https://x.com/specterlaw"];
 
 export const SEO_ROUTE_META: Record<string, SeoRouteMeta> = {
   "/": {
-    title: "Making Legal Easier",
+    title: "Specter Law | Legal AI Platform",
     description:
-      "Specter helps legal and business teams move faster with source-linked research, document analysis, and drafting workflows built for professional review.",
+      "Specter Law helps legal and business teams move faster with source-linked research, document analysis, and drafting workflows built for professional review.",
   },
   "/demo": {
     title: "Request a Demo",
@@ -110,12 +113,12 @@ export const SEO_ROUTE_META: Record<string, SeoRouteMeta> = {
       "Handle supplier and carrier agreements with faster clause review, risk surfacing, and compliance-oriented legal support.",
   },
   "/company/about": {
-    title: "About Specter",
+    title: "About Specter Law",
     description:
       "Learn the Specter mission, team background, and legal AI approach focused on structured outputs and source transparency.",
   },
   "/company/contact": {
-    title: "Contact Specter",
+    title: "Contact Specter Law",
     description:
       "Contact Specter for demos, security discussions, or general questions about legal AI workflows for your organization.",
   },
@@ -151,7 +154,7 @@ function buildWebPageSchema(title: string, description: string, canonical: strin
     url: canonical,
     isPartOf: {
       "@type": "WebSite",
-      name: "Specter",
+      name: SEO_ORG_NAME,
       url: SEO_BASE_URL,
     },
   };
@@ -162,22 +165,59 @@ function buildHomeSchemas(title: string, description: string): SeoSchema[] {
     {
       "@context": "https://schema.org",
       "@type": "Organization",
-      name: "Specter",
+      name: SEO_ORG_NAME,
+      alternateName: SEO_ORG_ALTERNATE_NAMES,
+      legalName: SEO_ORG_NAME,
       url: SEO_BASE_URL,
       logo: `${SEO_BASE_URL}/logos/specterlogo.png`,
-      sameAs: ["https://x.com/specterlaw"],
+      sameAs: SEO_ORG_SAME_AS,
       email: "hello@specterlaw.us",
+      founder: [
+        {
+          "@type": "Person",
+          name: "Dragos Pisilea",
+          sameAs: "https://www.linkedin.com/in/dragos-andrei-pisilea-aa1572164",
+        },
+        {
+          "@type": "Person",
+          name: "Amir Ajaj",
+          sameAs: "https://www.linkedin.com/in/amir-ajaj/",
+        },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          contactType: "sales",
+          email: "hello@specterlaw.us",
+          url: `${SEO_BASE_URL}/company/contact`,
+        },
+      ],
     },
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: title,
+      name: SEO_ORG_NAME,
+      alternateName: SEO_ORG_ALTERNATE_NAMES,
       url: SEO_BASE_URL,
       description,
       publisher: {
         "@type": "Organization",
-        name: "Specter",
+        name: SEO_ORG_NAME,
       },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Is Speceter the same as Specter Law?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. If you searched for Speceter, you are likely looking for Specter Law at specterlaw.us.",
+          },
+        },
+      ],
     },
   ];
 }
@@ -188,7 +228,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
 
   if (!routeMeta) {
     const canonical = buildCanonical(normalizedPath);
-    const title = "Page Not Found | Specter";
+    const title = "Page Not Found | Specter Law";
     const description = "The page you requested does not exist. Explore Specter legal AI solutions from the main site navigation.";
 
     return {
@@ -198,7 +238,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
       robots: "noindex,follow",
       ogType: "website",
       ogImage: SEO_OG_IMAGE,
-      ogSiteName: "Specter",
+      ogSiteName: SEO_ORG_NAME,
       twitterCard: "summary_large_image",
       twitterSite: SEO_TWITTER_SITE,
       jsonLd: buildWebPageSchema(title, description, canonical),
@@ -207,7 +247,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
   }
 
   const canonical = buildCanonical(normalizedPath);
-  const title = `${routeMeta.title} | Specter`;
+  const title = normalizedPath === "/" ? routeMeta.title : `${routeMeta.title} | Specter Law`;
   const description = clampDescription(routeMeta.description);
 
   return {
@@ -217,7 +257,7 @@ export function getSeoMeta(pathname: string): SeoMeta {
     robots: "index,follow",
     ogType: "website",
     ogImage: SEO_OG_IMAGE,
-    ogSiteName: "Specter",
+    ogSiteName: SEO_ORG_NAME,
     twitterCard: "summary_large_image",
     twitterSite: SEO_TWITTER_SITE,
     jsonLd:

@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ThemeProvider } from "@/hooks/useTheme";
 import { SeoManager } from "@/components/seo/SeoManager";
 
@@ -53,6 +53,8 @@ const App = () => (
           <Suspense fallback={<RouteLoadingFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/speceter" element={<Navigate to="/" replace />} />
+              <Route path="/specter-law" element={<Navigate to="/" replace />} />
               <Route path="/demo" element={<Demo />} />
               <Route path="/pilot" element={<Pilot />} />
               <Route path="/trust" element={<Trust />} />

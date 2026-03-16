@@ -397,6 +397,9 @@ export default function About() {
               <p className="text-lg text-muted-foreground">
                 Capability-level comparison focused on legal workflow reliability.
               </p>
+              <p className="text-sm text-muted-foreground mt-3">
+                Looking for "Speceter"? This is Specter Law.
+              </p>
             </div>
 
             <div className="md:hidden space-y-3">

@@ -350,11 +350,14 @@ export default function Home() {
                 <div
                   className={cn("text-center lg:text-left", playHeroIntro && "animate-fade-in")}
                   style={playHeroIntro ? { animationDelay: "0.55s" } : undefined}
-                >
-                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
-                    <span className="text-foreground">Making legal easier</span>
-                  </h1>
-                </div>
+                  >
+                    <h1 className="inline-block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
+                      <span className="block text-foreground">Specter</span>
+                      <span className="block whitespace-nowrap text-foreground text-[0.72em] sm:text-[0.74em] md:text-[0.76em] lg:text-[0.78em] xl:text-[0.8em]">
+                        Makes law easier
+                      </span>
+                    </h1>
+                  </div>
 
                 <div
                   className={cn("flex justify-center", playHeroIntro && "animate-fade-in")}
@@ -369,18 +372,18 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div
-                  className={cn(
-                    "text-center lg:text-left w-full max-w-[34ch] lg:max-w-[36ch] mx-auto lg:mx-0",
-                    playHeroIntro && "animate-fade-in",
-                  )}
-                  style={playHeroIntro ? { animationDelay: "0.9s" } : undefined}
-                >
-                  <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
-                    Domain-specific AI platform for law firms, enterprises, and businesses that need legal intelligence and workflows.
-                  </p>
+                  <div
+                    className={cn(
+                      "text-center lg:text-left w-full max-w-[34ch] lg:max-w-[36ch] mx-auto lg:mx-0",
+                      playHeroIntro && "animate-fade-in",
+                    )}
+                    style={playHeroIntro ? { animationDelay: "0.9s" } : undefined}
+                  >
+                    <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
+                      Specter Law is a domain-specific AI platform for law firms, enterprises, and businesses that need legal intelligence and workflows.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
               <div
                 className={cn(
@@ -828,6 +831,9 @@ export default function Home() {
             </p>
             <p className="text-sm text-muted-foreground/70 mb-8">
               Now expanding to US-focused commercial contracts and compliance use cases.
+            </p>
+            <p className="text-xs text-muted-foreground/70 mb-8">
+              Looking for "Speceter"? You are likely looking for Specter Law.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
