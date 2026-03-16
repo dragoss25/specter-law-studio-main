@@ -24,7 +24,7 @@ export default function Terms() {
               <FileText className="h-4 w-4" />
               <span className="text-sm font-medium">Terms of Service</span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Terms for using
               <br />
               <span className="text-muted-foreground">Specter</span>
@@ -170,8 +170,8 @@ export default function Terms() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

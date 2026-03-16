@@ -40,11 +40,10 @@ export function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1">{children}</main>
+      <main className="flex-1 pb-[calc(5.5rem+env(safe-area-inset-bottom))] lg:pb-0">{children}</main>
       <Footer />
-      
-      {/* Mobile Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border lg:hidden z-40">
+
+      <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-background p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] lg:hidden">
         <Button className="w-full" asChild>
           <Link to="/demo">Request a Demo</Link>
         </Button>

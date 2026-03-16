@@ -85,7 +85,7 @@ export default function Platform() {
               <span className="text-sm font-medium">Platform</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
               Built around the
               <br />
               <span className="text-muted-foreground">Cortex Agent</span>
@@ -299,8 +299,8 @@ export default function Platform() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

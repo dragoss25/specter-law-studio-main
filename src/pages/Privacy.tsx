@@ -24,7 +24,7 @@ export default function Privacy() {
               <Shield className="h-4 w-4" />
               <span className="text-sm font-medium">Privacy Policy</span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Privacy, explained
               <br />
               <span className="text-muted-foreground">with clarity</span>
@@ -206,8 +206,8 @@ export default function Privacy() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

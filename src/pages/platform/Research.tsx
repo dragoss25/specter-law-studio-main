@@ -175,7 +175,7 @@ export default function Research() {
               <span className="text-sm font-medium">Research</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Source-linked
               <br />
               <span className="text-muted-foreground">legal research</span>
@@ -330,3 +330,4 @@ export default function Research() {
     </Layout>
   );
 }
+

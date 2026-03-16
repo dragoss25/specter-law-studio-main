@@ -94,7 +94,7 @@ export default function CaseAnalysis() {
               <span className="text-sm font-medium">Case Analysis</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
               One integrated platform
             </h1>
 
@@ -314,3 +314,4 @@ export default function CaseAnalysis() {
     </Layout>
   );
 }
+

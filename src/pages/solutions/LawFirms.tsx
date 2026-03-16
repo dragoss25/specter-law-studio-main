@@ -379,7 +379,7 @@ export default function LawFirms() {
                 </Button>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {practiceAreas.map((area) => (
                   <div key={area.name} className="p-4 rounded-lg border border-border bg-background">
                     <p className="font-semibold mb-1">{area.name}</p>
@@ -465,6 +465,7 @@ export default function LawFirms() {
     </Layout>
   );
 }
+
 
 
 

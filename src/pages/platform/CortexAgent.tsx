@@ -82,7 +82,7 @@ export default function CortexAgent() {
               <span className="text-sm font-medium">Cortex Agent</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight animate-fade-in" style={{ animationDelay: "0.1s" }}>
               Multi-step reasoning
               <br />
               <span className="text-muted-foreground">with source-linked outputs</span>
@@ -255,8 +255,8 @@ export default function CortexAgent() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

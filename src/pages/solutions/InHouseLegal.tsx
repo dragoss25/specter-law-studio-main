@@ -379,7 +379,7 @@ export default function InHouseLegal() {
                 </Button>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {industries.map((industry) => (
                   <div key={industry.name} className="p-4 rounded-lg border border-border bg-background">
                     <p className="font-semibold mb-1">{industry.name}</p>
@@ -465,6 +465,7 @@ export default function InHouseLegal() {
     </Layout>
   );
 }
+
 
 
 

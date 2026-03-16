@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://specterlaw.us/</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://specterlaw.us/demo</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://specterlaw.us/pilot</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://specterlaw.us/trust</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/privacy</loc><lastmod>2026-03-16</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://specterlaw.us/terms</loc><lastmod>2026-03-16</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+
+  <url><loc>https://specterlaw.us/platform/case-analysis</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/platform/cortex-agent</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/platform/document-analysis</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/platform/drafting</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/platform/research</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://specterlaw.us/solutions/in-house-legal</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/solutions/procurement</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/solutions/privacy-compliance</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/solutions/law-firms</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/solutions/real-estate</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://specterlaw.us/solutions/logistics</loc><lastmod>2026-03-16</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <url><loc>https://specterlaw.us/company/about</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://specterlaw.us/company/contact</loc><lastmod>2026-03-16</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>

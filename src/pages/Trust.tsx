@@ -64,7 +64,7 @@ export default function Trust() {
               <span className="text-sm font-medium">Security & Trust</span>
             </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                 Trust is engineered,
                 <br />
                 <span className="text-muted-foreground">not assumed</span>
@@ -79,6 +79,10 @@ export default function Trust() {
                   src="/flags/us-flag.svg"
                   alt="United States flag"
                   className="h-3.5 w-auto rounded-sm border border-border"
+                  width={21}
+                  height={14}
+                  loading="lazy"
+                  decoding="async"
                 />
                 Built for US enterprise expectations
               </div>
@@ -324,8 +328,8 @@ export default function Trust() {
             </div>
           </div>
         </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

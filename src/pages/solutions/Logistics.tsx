@@ -380,7 +380,7 @@ export default function Logistics() {
                 </Button>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {operationTypes.map((type) => (
                   <div key={type.name} className="p-4 rounded-lg border border-border bg-background">
                     <p className="font-semibold mb-1">{type.name}</p>
@@ -466,6 +466,7 @@ export default function Logistics() {
     </Layout>
   );
 }
+
 
 
 

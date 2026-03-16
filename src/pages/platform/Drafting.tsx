@@ -78,7 +78,7 @@ export default function Drafting() {
               <span className="text-sm font-medium">Drafting</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Generate and refine
               <br />
               <span className="text-muted-foreground">legal language</span>
@@ -193,3 +193,4 @@ export default function Drafting() {
     </Layout>
   );
 }
+

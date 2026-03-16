@@ -78,7 +78,7 @@ export default function DocumentAnalysis() {
               <span className="text-sm font-medium">Document Analysis</span>
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Structured analysis
               <br />
               <span className="text-muted-foreground">with source citations</span>
@@ -194,3 +194,4 @@ export default function DocumentAnalysis() {
     </Layout>
   );
 }
+

@@ -106,7 +106,7 @@ export default function Pilot() {
               <span className="text-sm font-medium">Pilot Program</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Test Cortex on
               <br />
               <span className="text-muted-foreground">your real work</span>
@@ -259,7 +259,7 @@ export default function Pilot() {
               </div>
 
               <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName" className="text-sm font-medium">
                       First name <span className="text-muted-foreground">*</span>
@@ -398,8 +398,8 @@ export default function Pilot() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

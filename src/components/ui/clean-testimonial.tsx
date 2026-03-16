@@ -121,7 +121,15 @@ export function Testimonial() {
             }`}
             whileHover={{ scale: 1.1, opacity: 1 }}
           >
-            <img src={t.avatar || "/placeholder.svg"} alt={t.author} className="w-full h-full object-cover" />
+            <img
+              src={t.avatar || "/placeholder.svg"}
+              alt={t.author}
+              className="w-full h-full object-cover"
+              width={24}
+              height={24}
+              loading="lazy"
+              decoding="async"
+            />
           </motion.div>
         ))}
       </motion.div>
@@ -157,6 +165,10 @@ export function Testimonial() {
                   src={t.avatar}
                   alt={t.author}
                   className="absolute inset-0 w-12 h-12 rounded-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-500"
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  decoding="async"
                   animate={{
                     opacity: i === activeIndex ? 1 : 0,
                     zIndex: i === activeIndex ? 1 : 0,

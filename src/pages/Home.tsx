@@ -162,7 +162,7 @@ const useCaseTabs = [
       "Tenant dispute research",
       "Compliance documentation",
     ],
-    href: "/solutions/procurement",
+    href: "/solutions/real-estate",
   },
   {
     id: "logistics",
@@ -176,7 +176,7 @@ const useCaseTabs = [
       "Freight agreement drafting",
       "Cross-border compliance",
     ],
-    href: "/solutions/procurement",
+    href: "/solutions/logistics",
   },
   {
     id: "compliance",
@@ -778,6 +778,10 @@ export default function Home() {
                   src="/flags/us-flag.svg"
                   alt="United States flag"
                   className="h-3 w-auto rounded-sm border border-border"
+                  width={18}
+                  height={12}
+                  loading="lazy"
+                  decoding="async"
                 />
                 US Pilot Program
               </span>
@@ -825,8 +829,8 @@ export default function Home() {
       </section>
 
       {/* Spacer for mobile sticky CTA */}
-        <div className="h-20 lg:hidden" />
       </Layout>
     </div>
   );
 }
+

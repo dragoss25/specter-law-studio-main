@@ -63,7 +63,7 @@ export default function Contact() {
               <span className="text-sm font-medium">Contact Us</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Get in touch
             </h1>
             
@@ -227,8 +227,8 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+

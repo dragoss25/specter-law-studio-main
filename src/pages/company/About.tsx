@@ -121,7 +121,7 @@ export default function About() {
                 <span className="text-sm font-medium">About Specter</span>
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
                 Legal clarity
                 <br />
                 <span className="text-muted-foreground">should not be a luxury</span>
@@ -138,6 +138,10 @@ export default function About() {
                 src="/logos/americanspecterlogo.png"
                 alt="Specter logo"
                 className="w-full h-auto max-w-[340px] md:max-w-[420px]"
+                width={420}
+                height={420}
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -233,6 +237,10 @@ export default function About() {
                       src={founder.image}
                       alt={founder.name}
                       className="w-full h-full object-cover"
+                      width={256}
+                      height={256}
+                      loading="lazy"
+                      decoding="async"
                       style={{
                         objectPosition: founder.imagePosition,
                         transform: `scale(${founder.imageScale ?? 1})`,
@@ -277,60 +285,98 @@ export default function About() {
             </div>
 
             <div className="relative py-12">
-              <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-border -z-0" />
-
-              <div className="grid grid-cols-4 gap-8 relative">
-                {milestones.map((milestone) => (
-                  <div key={milestone.year} className="grid grid-rows-[1fr_auto_1fr] items-center text-center min-h-[280px]">
-                    <div
-                      className={cn(
-                        "px-2",
-                        milestone.position === "top" ? "row-start-1 pb-8" : "row-start-1 pb-8 opacity-0 pointer-events-none"
-                      )}
-                    >
-                      <div className="bg-background relative z-10 inline-block max-w-[220px]">
-                        <div className="text-lg font-bold mb-2">{milestone.year}</div>
-                        <div className="font-semibold mb-2 inline-flex items-center gap-2 justify-center">
+              <div className="md:hidden relative max-h-[70vh] overflow-y-auto snap-y snap-mandatory pr-1">
+                <div className="absolute left-[0.65rem] top-0 bottom-0 w-px bg-border" />
+                <div className="space-y-6">
+                  {milestones.map((milestone) => (
+                    <article key={`mobile-${milestone.year}`} className="snap-start relative pl-8">
+                      <div className="absolute left-0 top-6 h-3 w-3 rounded-full border-2 border-background bg-foreground" />
+                      <div className="rounded-xl border border-border bg-background p-4">
+                        <div className="text-sm font-semibold text-muted-foreground">{milestone.year}</div>
+                        <div className="mt-1 font-semibold inline-flex items-center gap-2">
                           {milestone.flag && (
                             <img
                               src="/flags/us-flag.svg"
                               alt="United States flag"
                               className="h-3 w-auto rounded-sm border border-border"
+                              width={18}
+                              height={12}
+                              loading="lazy"
+                              decoding="async"
                             />
                           )}
                           {milestone.event}
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{milestone.desc}</p>
+                        <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{milestone.desc}</p>
                       </div>
-                    </div>
+                    </article>
+                  ))}
+                </div>
+              </div>
 
-                    <div className="row-start-2 flex items-center justify-center z-10">
-                      <div className="h-3 w-3 rounded-full bg-foreground border-2 border-background" />
-                    </div>
-
-                    <div
-                      className={cn(
-                        "px-2",
-                        milestone.position === "bottom" ? "row-start-3 pt-8" : "row-start-3 pt-8 opacity-0 pointer-events-none"
-                      )}
-                    >
-                      <div className="bg-background relative z-10 inline-block max-w-[220px]">
-                        <div className="text-lg font-bold mb-2">{milestone.year}</div>
-                        <div className="font-semibold mb-2 inline-flex items-center gap-2 justify-center">
-                          {milestone.flag && (
-                            <img
-                              src="/flags/us-flag.svg"
-                              alt="United States flag"
-                              className="h-3 w-auto rounded-sm border border-border"
-                            />
-                          )}
-                          {milestone.event}
+              <div className="hidden md:block">
+                <div className="absolute left-0 right-0 top-1/2 h-0.5 bg-border -z-0" />
+                <div className="grid grid-cols-4 gap-8 relative">
+                  {milestones.map((milestone) => (
+                    <div key={milestone.year} className="grid grid-rows-[1fr_auto_1fr] items-center text-center min-h-[280px]">
+                      <div
+                        className={cn(
+                          "px-2",
+                          milestone.position === "top" ? "row-start-1 pb-8" : "row-start-1 pb-8 opacity-0 pointer-events-none"
+                        )}
+                      >
+                        <div className="bg-background relative z-10 inline-block max-w-[220px]">
+                          <div className="text-lg font-bold mb-2">{milestone.year}</div>
+                          <div className="font-semibold mb-2 inline-flex items-center gap-2 justify-center">
+                            {milestone.flag && (
+                              <img
+                                src="/flags/us-flag.svg"
+                                alt="United States flag"
+                                className="h-3 w-auto rounded-sm border border-border"
+                                width={18}
+                                height={12}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            )}
+                            {milestone.event}
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{milestone.desc}</p>
                         </div>
-                        <p className="text-sm text-muted-foreground leading-relaxed">{milestone.desc}</p>
+                      </div>
+
+                      <div className="row-start-2 flex items-center justify-center z-10">
+                        <div className="h-3 w-3 rounded-full bg-foreground border-2 border-background" />
+                      </div>
+
+                      <div
+                        className={cn(
+                          "px-2",
+                          milestone.position === "bottom" ? "row-start-3 pt-8" : "row-start-3 pt-8 opacity-0 pointer-events-none"
+                        )}
+                      >
+                        <div className="bg-background relative z-10 inline-block max-w-[220px]">
+                          <div className="text-lg font-bold mb-2">{milestone.year}</div>
+                          <div className="font-semibold mb-2 inline-flex items-center gap-2 justify-center">
+                            {milestone.flag && (
+                              <img
+                                src="/flags/us-flag.svg"
+                                alt="United States flag"
+                                className="h-3 w-auto rounded-sm border border-border"
+                                width={18}
+                                height={12}
+                                loading="lazy"
+                                decoding="async"
+                              />
+                            )}
+                            {milestone.event}
+                          </div>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{milestone.desc}</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -524,8 +570,8 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }
+
+
