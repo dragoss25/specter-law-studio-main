@@ -27,6 +27,8 @@ import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section
 import { InteractiveImageAccordion } from "@/components/ui/interactive-image-accordion";
 import { AIConversationDemo } from "@/components/ui/ai-conversation-demo";
 import { Testimonial } from "@/components/ui/clean-testimonial";
+import { WorkflowMiniPreview, type WorkflowPreviewType } from "@/components/ui/workflow-mini-preview";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 // Real industries served - B2B across all sectors
 const industries = [
@@ -221,13 +223,23 @@ const useCaseTabs = [
 ];
 
 // Platform capabilities - what Specter actually offers
-const platformCapabilities = [
+type PlatformCapability = {
+  id: number;
+  title: string;
+  description: string;
+  href: string;
+  icon: typeof Brain;
+  preview: WorkflowPreviewType;
+};
+
+const platformCapabilities: PlatformCapability[] = [
   {
     id: 1,
     title: "Cortex Agent",
     description: "Multi-step reasoning that researches, validates, and delivers structured outputs with source citations.",
     href: "/platform/cortex-agent",
     icon: Brain,
+    preview: "cortex",
   },
   {
     id: 2,
@@ -235,6 +247,7 @@ const platformCapabilities = [
     description: "Upload contracts and documents for structured review—key terms, risks, and actionable summaries.",
     href: "/platform/document-analysis",
     icon: FileText,
+    preview: "analysis",
   },
   {
     id: 3,
@@ -242,6 +255,7 @@ const platformCapabilities = [
     description: "Generate first drafts of contracts, letters, and legal documents based on your specifications.",
     href: "/platform/drafting",
     icon: PenTool,
+    preview: "drafting",
   },
   {
     id: 4,
@@ -249,11 +263,58 @@ const platformCapabilities = [
     description: "Search legal databases with AI-powered queries. Get sourced answers, not just raw results.",
     href: "/platform/research",
     icon: Search,
+    preview: "research",
   },
 ];
 
+const cortexReasoningSteps = [
+  {
+    id: 1,
+    title: "Intake",
+    description: "Understand the legal question, context, and required output before reasoning begins.",
+    href: "/platform/cortex-agent",
+    icon: Brain,
+  },
+  {
+    id: 2,
+    title: "Research",
+    description: "Search statutes, case law, and legal sources to gather relevant evidence.",
+    href: "/platform/cortex-agent",
+    icon: Search,
+  },
+  {
+    id: 3,
+    title: "Validate",
+    description: "Apply legal checks and guardrails to test consistency and reduce hallucinations.",
+    href: "/platform/cortex-agent",
+    icon: ShieldCheck,
+  },
+  {
+    id: 4,
+    title: "Structure",
+    description: "Organize findings into clear reasoning, key points, and practical recommendations.",
+    href: "/platform/cortex-agent",
+    icon: PenTool,
+  },
+  {
+    id: 5,
+    title: "Cite",
+    description: "Deliver answers with traceable source citations so teams can verify every claim.",
+    href: "/platform/cortex-agent",
+    icon: FileText,
+  },
+];
+
+let hasPlayedHomeHeroIntro = false;
+
 export default function Home() {
   const [activeUseCase, setActiveUseCase] = useState(useCaseTabs[0].id);
+  const [activePlatformFeature, setActivePlatformFeature] = useState(platformCapabilities[0].id);
+  const [playHeroIntro] = useState(() => {
+    if (hasPlayedHomeHeroIntro) return false;
+    hasPlayedHomeHeroIntro = true;
+    return true;
+  });
   const activeTab = useCaseTabs.find(tab => tab.id === activeUseCase) || useCaseTabs[0];
 
   return (
@@ -273,36 +334,63 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/60 pointer-events-none -z-10" />
           <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none z-0" />
           <div className="container relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Main headline - Harvey.ai inspired */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] animate-fade-in" style={{ animationDelay: "0.1s" }}>
-              <span className="block">Professional</span>
-              <span className="block text-foreground/80">Class Legal AI</span>
-            </h1>
-            
-            {/* Subheadline - broader B2B positioning */}
-            <p className="mt-8 text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "0.2s" }}>
-              Domain-specific AI for law firms, enterprises, and every business that needs legal intelligence.
-            </p>
+            <div className="max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-8 lg:gap-10">
+                <div
+                  className={cn("text-left", playHeroIntro && "animate-fade-in")}
+                  style={playHeroIntro ? { animationDelay: "0.55s" } : undefined}
+                >
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
+                    <span className="text-foreground">Making legal easier</span>
+                  </h1>
+                </div>
 
-            {/* CTAs */}
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
-              <Link to="/demo">
-                <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
-                  <span className="flex items-center gap-2 font-medium">
-                    Request a Demo
-                    <ArrowRight className="h-4 w-4" />
-                  </span>
-                </ShimmerButton>
-              </Link>
-              <Link to="/pilot">
-                <ShimmerButton variant="secondary" className="text-base h-14 px-8">
-                  <span className="font-medium">Start a Pilot</span>
-                </ShimmerButton>
-              </Link>
+                <div
+                  className={cn("flex justify-center", playHeroIntro && "animate-fade-in")}
+                  style={playHeroIntro ? { animationDelay: "0.15s" } : undefined}
+                >
+                  <div>
+                    <BrandLogo
+                      alt="Specter"
+                      containerClassName="w-full max-w-[280px] md:max-w-[340px] lg:max-w-[380px]"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className={cn(
+                    "text-left w-full max-w-[34ch] lg:max-w-[36ch]",
+                    playHeroIntro && "animate-fade-in",
+                  )}
+                  style={playHeroIntro ? { animationDelay: "0.9s" } : undefined}
+                >
+                  <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
+                    Domain-specific AI platform for law firms, enterprises, and businesses that need legal intelligence and workflows.
+                  </p>
+                </div>
+              </div>
+
+              <div
+                className={cn("mt-10 flex flex-col sm:flex-row gap-4 justify-center", playHeroIntro && "animate-fade-in")}
+                style={playHeroIntro ? { animationDelay: "1.15s" } : undefined}
+              >
+                <Link to="/demo">
+                  <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
+                    <span className="flex items-center gap-2 font-medium">
+                      Request a Demo
+                      <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </ShimmerButton>
+                </Link>
+                <Link to="/pilot">
+                  <ShimmerButton variant="secondary" className="text-base h-14 px-8">
+                    <span className="font-medium">Start a Pilot</span>
+                  </ShimmerButton>
+                </Link>
+              </div>
             </div>
           </div>
-        </div>
       </section>
 
       {/* Industries We Serve - Multi-sector B2B focus */}
@@ -338,32 +426,89 @@ export default function Home() {
       {/* Platform Capabilities - what Specter offers */}
       <section className="py-24 md:py-32 reveal-on-scroll">
         <div className="container">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Side: Text Content */}
-              <div className="text-left">
-                <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-4">
-                  Platform
-                </p>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
-                  One integrated platform
-                </h2>
-                <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                  Everything your team needs for legal research, document analysis, and drafting.
-                </p>
-                <Button variant="outline" asChild>
-                  <Link to="/platform">
-                    Explore the Platform
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-              </div>
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground mb-4">
+              Platform
+            </p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 leading-tight">
+              One integrated platform
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-3xl mx-auto">
+              Everything your team needs for legal research, document analysis, and drafting.
+            </p>
+            <Button variant="outline" asChild>
+              <Link to="/platform/case-analysis">
+                Explore the Platform
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
 
-              {/* Right Side: Interactive Image Accordion */}
-              <div>
-                <InteractiveImageAccordion items={platformCapabilities} defaultActiveIndex={0} />
-              </div>
-            </div>
+      {/* Platform Features - mini preview list */}
+      <section className="pb-24 md:pb-32 reveal-on-scroll">
+        <div className="container">
+          <div className="max-w-5xl mx-auto">
+            <div className="h-px bg-border" />
+            {platformCapabilities.map((feature, index) => {
+              const Icon = feature.icon;
+              const isActive = activePlatformFeature === feature.id;
+
+              return (
+                <Link
+                  key={feature.id}
+                  to={feature.href}
+                  className="group block rounded-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
+                  onMouseEnter={() => setActivePlatformFeature(feature.id)}
+                  onFocus={() => setActivePlatformFeature(feature.id)}
+                >
+                  <div className="flex items-start gap-6 md:gap-10 py-8 md:py-10">
+                    <span
+                      className={cn(
+                        "text-[3rem] md:text-[4rem] font-bold leading-none tracking-tight select-none shrink-0 w-16 md:w-24 text-right tabular-nums transition-opacity",
+                        isActive ? "text-foreground opacity-100" : "text-foreground/20 opacity-70"
+                      )}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <div className="flex-1 pt-1 md:pt-2 min-w-0">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="h-8 w-8 rounded-md border border-border/80 bg-muted/40 flex items-center justify-center">
+                          <Icon className="h-4 w-4 text-foreground/80" />
+                        </div>
+                        <h3
+                          className={cn(
+                            "text-xl md:text-2xl font-bold tracking-tight transition-colors duration-500",
+                            isActive ? "text-foreground" : "text-foreground/90"
+                          )}
+                        >
+                          {feature.title}
+                        </h3>
+                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-foreground/70 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500" />
+                      </div>
+                      <p className="text-base text-muted-foreground max-w-2xl">{feature.description}</p>
+
+                      {isActive && (
+                        <div className="pt-6 pb-2">
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground/80">
+                              Live preview
+                            </span>
+                            <span className="h-1.5 w-1.5 rounded-full bg-foreground/70" />
+                          </div>
+                          <div className="max-w-xl">
+                            <WorkflowMiniPreview type={feature.preview} locale="en" active />
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="h-px bg-gradient-to-r from-border via-border/60 to-transparent" />
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -607,31 +752,8 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Process visualization */}
-            <div className="grid md:grid-cols-5 gap-4 mb-16">
-              {[
-                { step: "01", label: "Intake", desc: "Understand your question" },
-                { step: "02", label: "Research", desc: "Search legal databases" },
-                { step: "03", label: "Validate", desc: "Apply guardrails" },
-                { step: "04", label: "Structure", desc: "Generate outputs" },
-                { step: "05", label: "Cite", desc: "Link every source" },
-              ].map((item, index) => (
-                <div key={item.step} className="relative">
-                  <div className={cn(
-                    "p-6 rounded-lg border border-border bg-background text-center transition-all hover:border-foreground/30 hover:shadow-lg",
-                    index === 0 && "border-foreground"
-                  )}>
-                    <span className="text-2xl font-bold text-foreground/20">{item.step}</span>
-                    <p className="font-semibold mt-2">{item.label}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{item.desc}</p>
-                  </div>
-                  {index < 4 && (
-                    <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2 z-10">
-                      <ArrowRight className="h-4 w-4 text-muted-foreground/30" />
-                    </div>
-                  )}
-                </div>
-              ))}
+            <div className="mb-16">
+              <InteractiveImageAccordion items={cortexReasoningSteps} defaultActiveIndex={0} />
             </div>
 
             <div className="text-center">

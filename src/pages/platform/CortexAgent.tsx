@@ -7,6 +7,7 @@ import { ArrowRight, Brain, Sparkles, Search, Shield, FileText, Target } from "l
 import { cn } from "@/lib/utils";
 import DatabaseWithRestApi from "@/components/ui/database-with-rest-api";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
+import { WhyCortexSection } from "@/components/platform";
 
 const capabilities = [
   {
@@ -107,6 +108,8 @@ export default function CortexAgent() {
         </div>
       </section>
 
+      <WhyCortexSection />
+
       {/* Capabilities & Process */}
       <section className="py-24 md:py-32">
         <div className="container">
@@ -178,7 +181,6 @@ export default function CortexAgent() {
 
       {/* Scenarios */}
       <section className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-subtle/30 via-surface-subtle/20 to-background pointer-events-none" />
         <div className="container relative">
           <div className="text-center mb-16">
             <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4">
@@ -216,7 +218,6 @@ export default function CortexAgent() {
 
       {/* Example Output */}
       <section className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background pointer-events-none" />
         <div className="container relative">
           <div className="text-center mb-16">
             <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4">
@@ -237,7 +238,6 @@ export default function CortexAgent() {
 
       {/* CTA */}
       <section className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-surface-subtle/20 to-background pointer-events-none" />
         <div className="container relative">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">

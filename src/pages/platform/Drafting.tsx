@@ -1,71 +1,65 @@
 import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { EtherealShadow } from "@/components/ui/ethereal-shadow";
-import { CheckCircle, ArrowRight, PenTool, FileText, RefreshCw, Layout as LayoutIcon, Link2, Layers } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowRight, BookOpen, CheckCircle, Clock, FileCheck, FileText, RefreshCw, Shield, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import { DraftDemo } from "@/components/platform";
 
-const capabilities = [
+const features = [
   {
-    icon: FileText,
-    text: "Generate first drafts of clauses and provisions",
+    icon: Sparkles,
+    title: "Intelligent generation",
+    description: "AI turns your inputs into complete drafts with legal structure.",
+  },
+  {
+    icon: BookOpen,
+    title: "Template library",
+    description: "Access validated templates for contracts, requests, memoranda, and more.",
+  },
+  {
+    icon: Shield,
+    title: "Compliance-oriented drafting",
+    description: "Drafts align with current legal requirements and practical standards.",
+  },
+  {
+    icon: CheckCircle,
+    title: "Context adaptation",
+    description: "Content adapts to parties, facts, and business/legal purpose.",
   },
   {
     icon: RefreshCw,
-    text: "Refine and iterate on existing language",
+    title: "Fast iteration",
+    description: "Refine drafts quickly with natural-language instructions.",
   },
   {
-    icon: PenTool,
-    text: "Create structured letters and correspondence",
-  },
-  {
-    icon: LayoutIcon,
-    text: "Build templates for repeated use",
-  },
-  {
-    icon: Link2,
-    text: "Receive source-linked suggestions",
-  },
-  {
-    icon: Layers,
-    text: "Get alternative language options",
+    icon: Clock,
+    title: "Draft in <30 seconds",
+    description: "Reduce manual effort for recurring legal drafting tasks.",
   },
 ];
 
-const scenarios = [
-  {
-    title: "Standard Clause Generation",
-    description: "Generate indemnification, limitation of liability, or confidentiality clauses aligned to your standards.",
-    icon: FileText,
-  },
-  {
-    title: "Letter Drafting",
-    description: "Draft vendor correspondence, notices, or response letters with professional, consistent language.",
-    icon: PenTool,
-  },
-  {
-    title: "Template Refinement",
-    description: "Improve existing templates with clearer language and better structure.",
-    icon: RefreshCw,
-  },
+const steps = [
+  { title: "Choose document type", desc: "Select the right template or category.", icon: FileText },
+  { title: "Provide details", desc: "Enter parties, context, and required clauses.", icon: FileCheck },
+  { title: "Generate draft", desc: "The system creates a structured legal draft.", icon: Sparkles },
+  { title: "Review and export", desc: "Finalize and export to PDF/Word.", icon: CheckCircle },
 ];
 
-const exampleOutput = {
-  title: "Sample Indemnification Clause",
-  content: `Each party ("Indemnifying Party") shall defend, indemnify, and hold harmless the other party and its officers, directors, employees, and agents ("Indemnified Parties") from and against any third-party claims, damages, losses, and expenses (including reasonable attorneys' fees) arising from:
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+};
 
-(a) the Indemnifying Party's breach of this Agreement;
-(b) the Indemnifying Party's negligence or willful misconduct; or
-(c) any claim that the Indemnifying Party's materials infringe third-party intellectual property rights.
-
-This indemnification obligation is subject to the Indemnified Party: (i) providing prompt written notice of the claim; (ii) granting sole control of the defense; and (iii) providing reasonable cooperation at the Indemnifying Party's expense.`,
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 };
 
 export default function Drafting() {
   return (
     <Layout>
-      {/* Hero */}
+      {/* Hero (US unchanged) */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <EtherealShadow
@@ -80,19 +74,18 @@ export default function Drafting() {
         <div className="container relative">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-background/80 backdrop-blur-sm mb-8">
-              <PenTool className="h-4 w-4" />
+              <FileText className="h-4 w-4" />
               <span className="text-sm font-medium">Drafting</span>
             </div>
-            
+
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Generate and refine
               <br />
               <span className="text-muted-foreground">legal language</span>
             </h1>
-            
+
             <p className="mt-8 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
-              Draft clauses, letters, and templates with structured assistance—
-              then refine with iterative improvements.
+              Draft clauses, letters, and templates with structured assistance, then refine with iterative improvements.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
@@ -110,113 +103,93 @@ export default function Drafting() {
         </div>
       </section>
 
-      {/* Capabilities */}
+      <DraftDemo />
+
       <section className="py-24 md:py-32">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4">
-                Capabilities
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-                Drafting assistance
-              </h2>
-              <p className="text-muted-foreground mb-8">
-                From first drafts to final polish.
-              </p>
-              
-              <div className="space-y-4">
-                {capabilities.map((cap) => (
-                  <div 
-                    key={cap.text}
-                    className="flex items-start gap-4 p-4 rounded-xl border border-border bg-background hover:border-foreground/20 transition-colors"
-                  >
-                    <div className="flex-shrink-0 h-10 w-10 rounded-lg border border-border flex items-center justify-center bg-surface-subtle">
-                      <cap.icon className="h-5 w-5" />
-                    </div>
-                    <span className="text-muted-foreground pt-2">{cap.text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">What document drafting provides</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Everything your team needs for professional legal drafting.
+            </p>
+          </motion.div>
 
-            <div className="lg:sticky lg:top-32">
-              <div className="p-8 rounded-2xl border border-border bg-background cortex-glow">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="h-2 w-2 rounded-full bg-foreground" />
-                  <span className="text-xs text-muted-foreground uppercase tracking-wider">Draft Output</span>
+          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+            {features.map((feature) => (
+              <motion.div key={feature.title} variants={itemVariants}>
+                <div className="h-full rounded-2xl border border-border bg-card p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="h-11 w-11 rounded-xl border border-border bg-muted/40 flex items-center justify-center shrink-0">
+                      <feature.icon className="h-5 w-5 text-foreground" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="font-semibold mb-4">{exampleOutput.title}</h3>
-                <pre className="text-sm text-muted-foreground whitespace-pre-wrap font-sans leading-relaxed">
-                  {exampleOutput.content}
-                </pre>
-                <div className="mt-6 pt-6 border-t border-border">
-                  <p className="text-xs text-muted-foreground">
-                    This is an example. All drafts require professional review.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
-      {/* Scenarios */}
-      <section className="py-24 md:py-32 relative">
+      <section className="py-24 md:py-32">
         <div className="container">
-          <div className="text-center mb-16">
-            <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-4">
-              Use Cases
+          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-3">How it works</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              A clear 4-step flow for reliable legal drafts.
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Example scenarios
-            </h2>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {scenarios.map((scenario) => (
-              <div 
-                key={scenario.title}
-                className={cn(
-                  "group p-6 rounded-2xl border border-border bg-background",
-                  "hover:border-foreground/20 transition-all duration-300"
-                )}
+          <div className="max-w-3xl mx-auto">
+            {steps.map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
               >
-                <div className="h-12 w-12 rounded-xl border border-border flex items-center justify-center bg-surface-subtle mb-5 group-hover:border-foreground/20 transition-colors">
-                  <scenario.icon className="h-5 w-5" />
+                <div className="flex items-start gap-5 mb-4">
+                  <div className="h-11 w-11 rounded-xl border border-border bg-muted/40 flex items-center justify-center shrink-0">
+                    <item.icon className="h-5 w-5 text-foreground" />
+                  </div>
+                  <div className="flex-1 pt-1">
+                    <h3 className="text-lg font-bold mb-1">{item.title}</h3>
+                    <p className="text-muted-foreground">{item.desc}</p>
+                  </div>
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{scenario.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
-                  {scenario.description}
-                </p>
-              </div>
+                {index < steps.length - 1 && <div className="ml-6 w-0.5 h-6 bg-border mb-4" />}
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-surface-subtle/20 to-background pointer-events-none" />
-        <div className="container relative">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Start drafting faster
-            </h2>
-            <p className="mt-6 text-lg text-muted-foreground">
-              See how Cortex can help generate and refine your legal documents.
+      <section className="py-16 md:py-20">
+        <div className="container">
+          <div className="rounded-3xl border border-border bg-card text-foreground text-center p-10 md:p-14">
+            <FileText className="h-12 w-12 mx-auto mb-4 text-foreground" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Create your first draft in under 30 seconds</h2>
+            <p className="text-lg mb-8 text-muted-foreground max-w-xl mx-auto">
+              Try drafting for free and see how quickly legal documents can be prepared.
             </p>
-            <Button size="lg" className="mt-10" asChild>
-              <Link to="/demo">
-                Request a Demo
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" asChild>
+                <a href="https://app.specterlaw.us/login">
+                  Start free
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+              <Button size="lg" variant="outline" asChild>
+                <Link to="/demo">Request demo</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
-
-      <div className="h-20 lg:hidden" />
     </Layout>
   );
 }

@@ -176,7 +176,7 @@ export default function Platform() {
               Enterprise Ready
             </p>
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-4">
-              Professional Class Legal AI for your organization
+              Making legal easier for your organization
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               Built for the standards enterprise legal teams demand.

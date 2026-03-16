@@ -202,7 +202,7 @@ export default function LawFirms() {
       </section>
 
       {/* Value Props */}
-      <section className="py-16 border-b border-border bg-surface-subtle">
+      <section className="py-16">
         <div className="container">
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             <div className="text-center">
@@ -430,37 +430,33 @@ export default function LawFirms() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-foreground text-background">
+      <section className="py-24">
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
               Ready to accelerate your practice?
             </h2>
-            <p className="text-lg text-background/80 mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               See how Specter can help your firm research faster, draft better, and serve more clients.
               Start with a focused pilot on your real cases.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/demo">
                 <ShimmerButton
-                  className="text-base h-14 px-8 shadow-xl bg-background text-foreground border border-foreground/10 dark:bg-foreground dark:text-background dark:border-background/10"
-                  background="transparent"
-                  shimmerColor="rgba(0, 0, 0, 0.15)"
+                  variant="primary" className="text-base h-14 px-8 shadow-xl"
                 >
                   <span className="font-medium">Request a Demo</span>
                 </ShimmerButton>
               </Link>
               <Link to="/pilot">
                 <ShimmerButton
-                  className="text-base h-14 px-8 border border-background/30 text-background dark:border-foreground/30 dark:text-foreground"
-                  background="transparent"
-                  shimmerColor="rgba(255, 255, 255, 0.2)"
+                  variant="secondary" className="text-base h-14 px-8"
                 >
                   <span className="font-medium">Start a Pilot</span>
                 </ShimmerButton>
               </Link>
             </div>
-            <p className="text-xs text-background/60 mt-6">
+            <p className="text-xs text-muted-foreground mt-6">
               Specter provides legal information, not legal advice. All outputs require professional review.
             </p>
           </div>
@@ -469,3 +465,6 @@ export default function LawFirms() {
     </Layout>
   );
 }
+
+
+

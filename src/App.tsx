@@ -9,10 +9,9 @@ import Home from "./pages/Home";
 import Demo from "./pages/Demo";
 import Pilot from "./pages/Pilot";
 import Trust from "./pages/Trust";
-import Resources from "./pages/Resources";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
-import { Platform, CortexAgent, DocumentAnalysis, Drafting, Research } from "./pages/platform";
+import { CaseAnalysis, CortexAgent, DocumentAnalysis, Drafting, Research } from "./pages/platform";
 import { InHouseLegal, Procurement, PrivacyCompliance, LawFirms, RealEstate, Logistics } from "./pages/solutions";
 import { About, Contact } from "./pages/company";
 import NotFound from "./pages/NotFound";
@@ -31,12 +30,11 @@ const App = () => (
             <Route path="/demo" element={<Demo />} />
             <Route path="/pilot" element={<Pilot />} />
             <Route path="/trust" element={<Trust />} />
-            <Route path="/resources" element={<Resources />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             
             {/* Platform */}
-            <Route path="/platform" element={<Platform />} />
+            <Route path="/platform/case-analysis" element={<CaseAnalysis />} />
             <Route path="/platform/cortex-agent" element={<CortexAgent />} />
             <Route path="/platform/document-analysis" element={<DocumentAnalysis />} />
             <Route path="/platform/drafting" element={<Drafting />} />

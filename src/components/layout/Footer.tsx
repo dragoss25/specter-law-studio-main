@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { Moon, Sun, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { useTheme } from "@/hooks/useTheme";
 
 const footerLinks = {
   platform: [
-    { label: "Platform Overview", href: "/platform" },
+    { label: "Case Analysis", href: "/platform/case-analysis" },
     { label: "Cortex Agent", href: "/platform/cortex-agent" },
     { label: "Document Analysis", href: "/platform/document-analysis" },
     { label: "Drafting", href: "/platform/drafting" },
@@ -23,7 +24,6 @@ const footerLinks = {
     { label: "About", href: "/company/about" },
     { label: "Contact", href: "/company/contact" },
     { label: "Trust & Security", href: "/trust" },
-    { label: "Resources", href: "/resources" },
   ],
   getStarted: [
     { label: "Request a Demo", href: "/demo" },
@@ -42,11 +42,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="col-span-2">
             <Link to="/" className="inline-flex items-center gap-2 group">
-              <img 
-                src="/logos/specterlogo.png" 
-                alt="Specter" 
-                className="h-7 w-auto invert dark:invert-0 group-hover:opacity-70 transition-opacity"
-              />
+              <BrandLogo className="h-7 w-auto" />
               <span className="text-xl font-bold tracking-tight group-hover:opacity-70 transition-opacity">SPECTER</span>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground max-w-xs leading-relaxed">
@@ -179,4 +175,3 @@ export function Footer() {
     </footer>
   );
 }
-

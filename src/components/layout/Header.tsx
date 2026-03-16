@@ -1,9 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Menu, Moon, Sun, Brain, FileText, Search, PenTool, Building2, Users, Shield, Briefcase, Scale, Truck, HomeIcon, Mail, Info, LogIn, Layers } from "lucide-react";
+import { Menu, Moon, Sun, Brain, FileText, Search, PenTool, Building2, Shield, Briefcase, Scale, Truck, HomeIcon, LogIn, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { VaporizeTextCycle, Tag } from "@/components/ui/vapour-text-effect";
 import { useTheme } from "@/hooks/useTheme";
 import {
   Accordion,
@@ -26,7 +25,10 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { cn } from "@/lib/utils";
+
+let hasPlayedHeaderWordmarkIntro = false;
 
 interface MenuItem {
   title: string;
@@ -39,13 +41,13 @@ interface MenuItem {
 const menuItems: MenuItem[] = [
   {
     title: "Platform",
-    url: "/platform",
+    url: "/platform/case-analysis",
     items: [
       {
-        title: "Platform Overview",
-        description: "The complete Specter platform",
+        title: "Case Analysis",
+        description: "Case relevance and legal context",
         icon: <Layers className="size-5 shrink-0" />,
-        url: "/platform",
+        url: "/platform/case-analysis",
       },
       {
         title: "Cortex Agent",
@@ -120,38 +122,23 @@ const menuItems: MenuItem[] = [
     url: "/trust",
   },
   {
-    title: "Resources",
-    url: "/resources",
-  },
-  {
     title: "Company",
-    url: "/company",
-    items: [
-      {
-        title: "About",
-        description: "Our mission and approach",
-        icon: <Info className="size-5 shrink-0" />,
-        url: "/company/about",
-      },
-      {
-        title: "Contact",
-        description: "Get in touch",
-        icon: <Mail className="size-5 shrink-0" />,
-        url: "/company/contact",
-      },
-    ],
+    url: "/company/about",
   },
 ];
 
 const mobileExtraLinks = [
   { name: "Trust", url: "/trust" },
-  { name: "Resources", url: "/resources" },
 ];
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [isLogoHovered, setIsLogoHovered] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [playWordmarkIntro] = useState(() => {
+    if (hasPlayedHeaderWordmarkIntro) return false;
+    hasPlayedHeaderWordmarkIntro = true;
+    return true;
+  });
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
 
@@ -174,7 +161,7 @@ export function Header() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-border bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80"
+          ? "border-b border-border/50 bg-background/70 backdrop-blur-md supports-[backdrop-filter]:bg-background/60"
           : "border-b border-transparent bg-transparent"
       )}
     >
@@ -185,38 +172,9 @@ export function Header() {
             <Link
               to="/"
               className="flex items-center gap-2 group"
-              onMouseEnter={() => setIsLogoHovered(true)}
-              onMouseLeave={() => setIsLogoHovered(false)}
             >
-              <img
-                src="/logos/specterlogo.png"
-                alt="Specter"
-                className="h-7 w-auto invert dark:invert-0 group-hover:opacity-70 transition-opacity"
-              />
-              <div className="w-[110px] h-[28px] overflow-visible">
-                <VaporizeTextCycle
-                  key={`specter-vapor-${theme}`}
-                  texts={["SPECTER"]}
-                  font={{
-                    fontFamily: "Inter, system-ui, sans-serif",
-                    fontSize: "20px",
-                    fontWeight: 700,
-                  }}
-                  color={theme === "dark" ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"}
-                  spread={3}
-                  density={7}
-                  animation={{
-                    vaporizeDuration: 1.5,
-                    fadeInDuration: 0.6,
-                    waitDuration: 0,
-                  }}
-                  direction="left-to-right"
-                  alignment="left"
-                  tag={Tag.SPAN}
-                  triggerOnHover={true}
-                  isHovering={isLogoHovered}
-                />
-              </div>
+              <BrandLogo className="h-7 w-auto" />
+              <WordmarkDrop animate={playWordmarkIntro} />
             </Link>
           </div>
 
@@ -243,7 +201,7 @@ export function Header() {
                 <Sun className="h-4 w-4" />
               )}
             </Button>
-            <a href="https://app.specterlaw.ai/login">
+            <a href="https://app.specterlaw.us/login">
               <Button
                 variant="ghost"
                 className="text-sm h-9 px-4 font-medium"
@@ -272,38 +230,9 @@ export function Header() {
             <Link
               to="/"
               className="flex items-center gap-2 group"
-              onMouseEnter={() => setIsLogoHovered(true)}
-              onMouseLeave={() => setIsLogoHovered(false)}
             >
-              <img
-                src="/logos/specterlogo.png"
-                alt="Specter"
-                className="h-7 w-auto invert dark:invert-0 group-hover:opacity-70 transition-opacity"
-              />
-              <div className="w-[110px] h-[28px] overflow-visible">
-                <VaporizeTextCycle
-                  key={`specter-vapor-mobile-${theme}`}
-                  texts={["SPECTER"]}
-                  font={{
-                    fontFamily: "Inter, system-ui, sans-serif",
-                    fontSize: "20px",
-                    fontWeight: 700,
-                  }}
-                  color={theme === "dark" ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"}
-                  spread={3}
-                  density={7}
-                  animation={{
-                    vaporizeDuration: 1.5,
-                    fadeInDuration: 0.6,
-                    waitDuration: 0,
-                  }}
-                  direction="left-to-right"
-                  alignment="left"
-                  tag={Tag.SPAN}
-                  triggerOnHover={true}
-                  isHovering={isLogoHovered}
-                />
-              </div>
+              <BrandLogo className="h-7 w-auto" />
+              <WordmarkDrop animate={playWordmarkIntro} />
             </Link>
 
             {/* Mobile Actions */}
@@ -329,12 +258,8 @@ export function Header() {
                 <SheetContent className="overflow-y-auto">
                   <SheetHeader>
                     <SheetTitle>
-                      <Link to="/" className="flex items-center gap-2">
-                        <img
-                          src="/logos/specterlogo.png"
-                          alt="Specter"
-                          className="h-6 w-auto invert dark:invert-0"
-                        />
+                      <Link to="/" className="flex items-center gap-2 group">
+                        <BrandLogo className="h-6 w-auto" />
                         <span className="text-lg font-bold">SPECTER</span>
                       </Link>
                     </SheetTitle>
@@ -361,7 +286,7 @@ export function Header() {
                       </div>
                     </div>
                     <div className="flex flex-col gap-3">
-                      <a href="https://app.specterlaw.ai/login">
+                      <a href="https://app.specterlaw.us/login">
                         <Button
                           variant="outline"
                           className="w-full text-sm h-10 font-medium"
@@ -391,17 +316,30 @@ export function Header() {
   );
 }
 
+function WordmarkDrop({ animate }: { animate: boolean }) {
+  return (
+    <span className="w-[110px] h-[28px] overflow-visible inline-flex items-center text-[20px] font-bold leading-none tracking-tight text-foreground">
+      {"SPECTER".split("").map((char, idx) => (
+        <span
+          key={`wordmark-${char}-${idx}`}
+          className={animate ? "wordmark-letter-drop" : ""}
+          style={animate ? { animationDelay: `${idx * 55}ms` } : undefined}
+        >
+          {char}
+        </span>
+      ))}
+    </span>
+  );
+}
+
 const renderMenuItem = (item: MenuItem, currentPath: string) => {
   if (item.items) {
-    // Apply right-alignment for the Company dropdown since it's at the right side
-    const isRightAligned = item.title === "Company";
-    
     return (
       <NavigationMenuItem key={item.title} className="text-muted-foreground">
         <NavigationMenuTrigger className="bg-transparent hover:bg-transparent data-[state=open]:bg-transparent h-10 px-4 text-sm font-medium hover:text-foreground">
           {item.title}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className={isRightAligned ? "right-0 left-auto" : ""}>
+        <NavigationMenuContent>
           <ul className="w-80 p-3">
             <NavigationMenuLink>
               {item.items.map((subItem) => (
