@@ -22,13 +22,14 @@ import {
   Search
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FeaturesSectionWithHoverEffects } from "@/components/ui/feature-section-with-hover-effects";
 import { InteractiveImageAccordion } from "@/components/ui/interactive-image-accordion";
 import { AIConversationDemo } from "@/components/ui/ai-conversation-demo";
 import { Testimonial } from "@/components/ui/clean-testimonial";
 import { WorkflowMiniPreview, type WorkflowPreviewType } from "@/components/ui/workflow-mini-preview";
 import { BrandLogo } from "@/components/ui/BrandLogo";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Real industries served - B2B across all sectors
 const industries = [
@@ -309,13 +310,23 @@ let hasPlayedHomeHeroIntro = false;
 
 export default function Home() {
   const [activeUseCase, setActiveUseCase] = useState(useCaseTabs[0].id);
-  const [activePlatformFeature, setActivePlatformFeature] = useState(platformCapabilities[0].id);
+  const isMobile = useIsMobile();
+  const [activePlatformFeature, setActivePlatformFeature] = useState<number | null>(platformCapabilities[0].id);
   const [playHeroIntro] = useState(() => {
     if (hasPlayedHomeHeroIntro) return false;
     hasPlayedHomeHeroIntro = true;
     return true;
   });
   const activeTab = useCaseTabs.find(tab => tab.id === activeUseCase) || useCaseTabs[0];
+
+  useEffect(() => {
+    if (isMobile) {
+      setActivePlatformFeature(null);
+      return;
+    }
+
+    setActivePlatformFeature((previousFeature) => previousFeature ?? platformCapabilities[0].id);
+  }, [isMobile]);
 
   return (
     <div className="relative min-h-screen">
@@ -337,7 +348,7 @@ export default function Home() {
             <div className="max-w-7xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-8 lg:gap-10">
                 <div
-                  className={cn("text-left", playHeroIntro && "animate-fade-in")}
+                  className={cn("text-center lg:text-left", playHeroIntro && "animate-fade-in")}
                   style={playHeroIntro ? { animationDelay: "0.55s" } : undefined}
                 >
                   <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">
@@ -360,7 +371,7 @@ export default function Home() {
 
                 <div
                   className={cn(
-                    "text-left w-full max-w-[34ch] lg:max-w-[36ch]",
+                    "text-center lg:text-left w-full max-w-[34ch] lg:max-w-[36ch] mx-auto lg:mx-0",
                     playHeroIntro && "animate-fade-in",
                   )}
                   style={playHeroIntro ? { animationDelay: "0.9s" } : undefined}
@@ -372,20 +383,23 @@ export default function Home() {
               </div>
 
               <div
-                className={cn("mt-10 flex flex-col sm:flex-row gap-4 justify-center", playHeroIntro && "animate-fade-in")}
+                className={cn(
+                  "mt-10 flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center",
+                  playHeroIntro && "animate-fade-in",
+                )}
                 style={playHeroIntro ? { animationDelay: "1.15s" } : undefined}
               >
-                <Link to="/demo">
-                  <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
-                    <span className="flex items-center gap-2 font-medium">
+                <Link to="/demo" className="w-full sm:w-auto">
+                  <ShimmerButton variant="primary" className="w-full sm:w-auto text-base h-14 px-8 shadow-xl">
+                    <span className="flex items-center justify-center gap-2 font-medium">
                       Request a Demo
                       <ArrowRight className="h-4 w-4" />
                     </span>
                   </ShimmerButton>
                 </Link>
-                <Link to="/pilot">
-                  <ShimmerButton variant="secondary" className="text-base h-14 px-8">
-                    <span className="font-medium">Start a Pilot</span>
+                <Link to="/pilot" className="w-full sm:w-auto">
+                  <ShimmerButton variant="secondary" className="w-full sm:w-auto text-base h-14 px-8">
+                    <span className="flex items-center justify-center font-medium">Start a Pilot</span>
                   </ShimmerButton>
                 </Link>
               </div>
@@ -460,8 +474,25 @@ export default function Home() {
                   key={feature.id}
                   to={feature.href}
                   className="group block rounded-[20px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-4"
-                  onMouseEnter={() => setActivePlatformFeature(feature.id)}
-                  onFocus={() => setActivePlatformFeature(feature.id)}
+                  onMouseEnter={() => {
+                    if (!isMobile) {
+                      setActivePlatformFeature(feature.id);
+                    }
+                  }}
+                  onFocus={() => {
+                    if (!isMobile) {
+                      setActivePlatformFeature(feature.id);
+                    }
+                  }}
+                  onClick={(event) => {
+                    if (!isMobile) return;
+
+                    // First tap on mobile expands the preview; second tap follows the link.
+                    if (activePlatformFeature !== feature.id) {
+                      event.preventDefault();
+                      setActivePlatformFeature(feature.id);
+                    }
+                  }}
                 >
                   <div className="flex items-start gap-6 md:gap-10 py-8 md:py-10">
                     <span
@@ -526,21 +557,23 @@ export default function Home() {
           </div>
 
           {/* Tab navigation */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-6xl mx-auto">
-            {useCaseTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveUseCase(tab.id)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap",
-                  activeUseCase === tab.id
-                    ? "bg-foreground text-background"
-                    : "bg-background border border-border hover:border-foreground/30"
-                )}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="mb-12 max-w-6xl mx-auto overflow-x-auto md:overflow-visible [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max min-w-full gap-2 snap-x snap-mandatory md:w-full md:min-w-0 md:flex-wrap md:justify-center">
+              {useCaseTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveUseCase(tab.id)}
+                  className={cn(
+                    "shrink-0 snap-start px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap",
+                    activeUseCase === tab.id
+                      ? "bg-foreground text-background"
+                      : "bg-background border border-border hover:border-foreground/30"
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Tab content */}
@@ -571,7 +604,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <Button asChild>
+                <Button asChild className="mx-auto lg:mx-0">
                   <Link to={activeTab.href}>
                     Learn more
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -649,7 +682,7 @@ export default function Home() {
                   delivers structured analysis with source citations, uncertainty flags, and clear next steps — 
                   the same rigorous approach that earned the trust of European enterprises.
                 </p>
-                <div className="pt-4 flex flex-wrap gap-4">
+                <div className="pt-4 flex flex-wrap gap-4 justify-center lg:justify-start">
                   <Button variant="outline" asChild>
                     <Link to="/company/about">
                       About Specter
@@ -796,7 +829,7 @@ export default function Home() {
             <p className="text-sm text-muted-foreground/70 mb-8">
               Now expanding to US-focused commercial contracts and compliance use cases.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton
                   variant="primary"

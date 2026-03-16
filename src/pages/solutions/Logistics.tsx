@@ -183,7 +183,7 @@ export default function Logistics() {
               Specter streamlines supplier contract review, carrier agreement analysis, and compliance research—
               so you can onboard vendors faster and keep your supply chain moving.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
                   <span className="flex items-center gap-2 font-medium">
@@ -250,21 +250,23 @@ export default function Logistics() {
           </div>
 
           {/* Tab navigation */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-4xl mx-auto">
-            {useCaseTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                  activeTab === tab.id
-                    ? "bg-foreground text-background"
-                    : "bg-background border border-border hover:border-foreground/30"
-                )}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="mb-12 max-w-4xl mx-auto overflow-x-auto md:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max min-w-full gap-2 snap-x snap-mandatory md:w-full md:min-w-0 md:flex-wrap md:justify-center">
+              {useCaseTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "shrink-0 snap-start whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    activeTab === tab.id
+                      ? "bg-foreground text-background"
+                      : "bg-background border border-border hover:border-foreground/30"
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Tab content */}
@@ -372,7 +374,7 @@ export default function Logistics() {
                   Whether you handle freight forwarding, warehousing, last-mile delivery, or international trade,
                   Specter adapts to your specific operational needs and contract patterns.
                 </p>
-                <Button asChild>
+                <Button asChild className="mx-auto lg:mx-0">
                   <Link to="/demo">
                     See operation examples
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -441,7 +443,7 @@ export default function Logistics() {
               See how Specter can help your logistics team review contracts faster, reduce risks, and scale operations.
               Start with a focused pilot on your real supplier and carrier agreements.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton
                   variant="primary" className="text-base h-14 px-8 shadow-xl"

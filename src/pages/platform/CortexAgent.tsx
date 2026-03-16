@@ -93,7 +93,7 @@ export default function CortexAgent() {
               with links to sources so you can verify before you act.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: "0.3s" }}>
               <Button size="lg" asChild>
                 <Link to="/demo">
                   Request a Demo
@@ -125,13 +125,35 @@ export default function CortexAgent() {
             </p>
           </div>
 
-          <FeaturesSectionWithHoverEffects
-            features={capabilities.map((cap) => ({
-              title: cap.title,
-              description: cap.description,
-              icon: cap.icon,
-            }))}
-          />
+          <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max gap-4 pb-1">
+              {capabilities.map((capability) => (
+                <div key={capability.title} className="snap-start shrink-0 w-[84vw] max-w-[320px]">
+                  <div className="h-full rounded-2xl border border-border bg-card p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="h-11 w-11 rounded-xl border border-border bg-muted/40 flex items-center justify-center shrink-0">
+                        <capability.icon className="h-5 w-5 text-foreground" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold mb-2">{capability.title}</h3>
+                        <p className="text-sm text-muted-foreground">{capability.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="hidden md:block">
+            <FeaturesSectionWithHoverEffects
+              features={capabilities.map((cap) => ({
+                title: cap.title,
+                description: cap.description,
+                icon: cap.icon,
+              }))}
+            />
+          </div>
         </div>
       </section>
 

@@ -87,7 +87,7 @@ export default function Trust() {
                 Built for US enterprise expectations
               </div>
 
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button size="lg" asChild>
                   <Link to="/company/contact">
                     Discuss Security Requirements
@@ -111,7 +111,43 @@ export default function Trust() {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex w-max gap-4 pb-1">
+                {principles.map((principle) => (
+                  <div
+                    key={principle.title}
+                    className={cn(
+                      "group relative p-6 rounded-2xl border border-border bg-background",
+                      "hover:border-foreground/20 transition-all duration-300",
+                      "hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:hover:shadow-[0_8px_30px_rgb(255,255,255,0.02)]",
+                      "snap-start shrink-0 w-[84vw] max-w-[340px]"
+                    )}
+                  >
+                    <div className="flex items-start gap-5">
+                      <div className="flex-shrink-0 h-12 w-12 rounded-xl border border-border flex items-center justify-center bg-surface-subtle group-hover:border-foreground/20 transition-colors">
+                        <principle.icon className="h-5 w-5" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold mb-2">{principle.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed mb-5">
+                          {principle.description}
+                        </p>
+                        <ul className="space-y-2">
+                          {principle.features.map((feature) => (
+                            <li key={feature} className="flex items-center gap-2 text-sm text-muted-foreground">
+                              <CheckCircle className="h-4 w-4 flex-shrink-0 text-foreground/60" />
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="hidden md:grid md:grid-cols-2 gap-8">
               {principles.map((principle) => (
                 <div
                   key={principle.title}

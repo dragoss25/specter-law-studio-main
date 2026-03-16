@@ -399,7 +399,33 @@ export default function About() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-border bg-background overflow-x-auto">
+            <div className="md:hidden space-y-3">
+              {capabilityRows.map((row) => (
+                <div key={row.feature} className="rounded-xl border border-border bg-background p-4">
+                  <p className="font-medium mb-3">{row.feature}</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="rounded-lg border border-border bg-muted/20 px-3 py-2 flex items-center justify-between">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Specter</span>
+                      {row.specter ? (
+                        <Check className="h-4 w-4 text-foreground" aria-label="Supported by Specter" />
+                      ) : (
+                        <X className="h-4 w-4 text-muted-foreground" aria-label="Not supported by Specter" />
+                      )}
+                    </div>
+                    <div className="rounded-lg border border-border bg-muted/20 px-3 py-2 flex items-center justify-between">
+                      <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">General AI</span>
+                      {row.generalAi ? (
+                        <Check className="h-4 w-4 text-muted-foreground" aria-label="Supported by general AI" />
+                      ) : (
+                        <X className="h-4 w-4 text-muted-foreground" aria-label="Not supported by general AI" />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="hidden md:block rounded-2xl border border-border bg-background overflow-x-auto">
               <table className="w-full min-w-[560px]">
                 <thead className="bg-muted/20 border-b border-border">
                   <tr>
@@ -552,7 +578,7 @@ export default function About() {
             <p className="mt-6 text-lg text-muted-foreground">
               We would love to learn about your legal team's challenges and explore how Specter might help.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
                   <span className="flex items-center gap-2 font-medium">

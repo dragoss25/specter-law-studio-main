@@ -182,7 +182,7 @@ export default function LawFirms() {
               Specter accelerates legal research, drafting, and analysis—freeing your attorneys
               to focus on strategy, client relationships, and billable work that matters.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
                   <span className="flex items-center gap-2 font-medium">
@@ -249,21 +249,23 @@ export default function LawFirms() {
           </div>
 
           {/* Tab navigation */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12 max-w-4xl mx-auto">
-            {useCaseTabs.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={cn(
-                  "px-4 py-2 rounded-full text-sm font-medium transition-all",
-                  activeTab === tab.id
-                    ? "bg-foreground text-background"
-                    : "bg-background border border-border hover:border-foreground/30"
-                )}
-              >
-                {tab.label}
-              </button>
-            ))}
+          <div className="mb-12 max-w-4xl mx-auto overflow-x-auto md:overflow-visible [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max min-w-full gap-2 snap-x snap-mandatory md:w-full md:min-w-0 md:flex-wrap md:justify-center">
+              {useCaseTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    "shrink-0 snap-start whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    activeTab === tab.id
+                      ? "bg-foreground text-background"
+                      : "bg-background border border-border hover:border-foreground/30"
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Tab content */}
@@ -371,7 +373,7 @@ export default function LawFirms() {
                   Whether you practice corporate law, litigation, real estate, or regulatory work,
                   Specter adapts to your firm's specific needs and practice areas.
                 </p>
-                <Button asChild>
+                <Button asChild className="mx-auto lg:mx-0">
                   <Link to="/demo">
                     See practice area examples
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -440,7 +442,7 @@ export default function LawFirms() {
               See how Specter can help your firm research faster, draft better, and serve more clients.
               Start with a focused pilot on your real cases.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton
                   variant="primary" className="text-base h-14 px-8 shadow-xl"

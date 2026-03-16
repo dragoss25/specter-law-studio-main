@@ -88,7 +88,7 @@ export default function Drafting() {
               Draft clauses, letters, and templates with structured assistance, then refine with iterative improvements.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" asChild>
                 <Link to="/demo">
                   Request a Demo
@@ -114,7 +114,27 @@ export default function Drafting() {
             </p>
           </motion.div>
 
-          <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+          <div className="md:hidden -mx-4 px-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex w-max gap-4 pb-1">
+              {features.map((feature) => (
+                <motion.div key={feature.title} variants={itemVariants} className="snap-start shrink-0 w-[84vw] max-w-[320px]">
+                  <div className="h-full rounded-2xl border border-border bg-card p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="h-11 w-11 rounded-xl border border-border bg-muted/40 flex items-center justify-center shrink-0">
+                        <feature.icon className="h-5 w-5 text-foreground" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
+                        <p className="text-sm text-muted-foreground">{feature.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <motion.div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
             {features.map((feature) => (
               <motion.div key={feature.title} variants={itemVariants}>
                 <div className="h-full rounded-2xl border border-border bg-card p-6">
@@ -176,7 +196,7 @@ export default function Drafting() {
             <p className="text-lg mb-8 text-muted-foreground max-w-xl mx-auto">
               Try drafting for free and see how quickly legal documents can be prepared.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button size="lg" asChild>
                 <a href="https://app.specterlaw.us/login">
                   Start free

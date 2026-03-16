@@ -281,7 +281,7 @@ export default function Platform() {
             <p className="mt-6 text-lg text-muted-foreground">
               Request a demo to see how Specter can support your legal team.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Link to="/demo">
                 <ShimmerButton variant="primary" className="text-base h-14 px-8 shadow-xl">
                   <span className="flex items-center gap-2 font-medium">
