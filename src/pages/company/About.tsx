@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { BrandLogo } from "@/components/ui/BrandLogo";
 import { EtherealShadow } from "@/components/ui/ethereal-shadow";
 import { motion } from "framer-motion";
 import {
@@ -135,13 +134,11 @@ export default function About() {
             </div>
 
             <div className="flex justify-center lg:justify-end">
-              <div className="group">
-                <BrandLogo
-                  alt="Specter logo"
-                  containerClassName="w-full max-w-[340px] md:max-w-[420px]"
-                  className="w-full h-auto"
-                />
-              </div>
+              <img
+                src="/logos/americanspecterlogo.png"
+                alt="Specter logo"
+                className="w-full h-auto max-w-[340px] md:max-w-[420px]"
+              />
             </div>
           </div>
         </div>
