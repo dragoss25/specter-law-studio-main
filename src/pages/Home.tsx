@@ -258,20 +258,20 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen">
-      <div className="fixed inset-0 -z-10">
-        <EtherealShadow
-          color="rgba(40, 40, 40, 0.9)"
-          animation={{ scale: 60, speed: 70 }}
-          noise={{ opacity: 0.4, scale: 1.5 }}
-          sizing="fill"
-          className="w-full h-full"
-        />
-      </div>
-      <div className="fixed inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/60 pointer-events-none -z-10" />
-
       <Layout>
         {/* Hero - Premium enterprise positioning */}
         <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <EtherealShadow
+              color="rgba(40, 40, 40, 0.9)"
+              animation={{ scale: 60, speed: 70 }}
+              noise={{ opacity: 0.4, scale: 1.5 }}
+              sizing="fill"
+              className="w-full h-full"
+            />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background/60 pointer-events-none -z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background pointer-events-none z-0" />
           <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Main headline - Harvey.ai inspired */}
@@ -708,4 +708,3 @@ export default function Home() {
     </div>
   );
 }
-
