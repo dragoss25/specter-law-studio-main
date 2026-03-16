@@ -380,7 +380,7 @@ export default function Home() {
                     style={playHeroIntro ? { animationDelay: "0.9s" } : undefined}
                   >
                     <p className="text-lg md:text-xl lg:text-2xl text-foreground leading-relaxed">
-                      Specter Law is a domain-specific AI platform for law firms, enterprises, and businesses that need legal intelligence and workflows.
+                      Specter Law is legal AI for teams that need reliable legal intelligence and workflows.
                     </p>
                   </div>
                 </div>
